@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoListRequest;
 use App\Models\TodoList;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class TodoListController extends Controller
@@ -14,28 +14,26 @@ class TodoListController extends Controller
         return response($list);
     }
 
-    public function show(TodoList $todolist)
+    public function show(TodoList $todo_list)
     {
-        return response()->json($todolist);
+        return response()->json($todo_list);
     }
 
-    public function store(Request $request)
+    public function store(TodoListRequest $request)
     {
-        $request->validate(['name' => ['required']]);
         $list = TodoList::create($request->all());
         return response($list, Response::HTTP_CREATED);
     }
 
-    public function destroy(TodoList $todolist)
+    public function destroy(TodoList $todo_list)
     {
-        $todolist->delete();
+        $todo_list->delete();
         return response('', Response::HTTP_NO_CONTENT);
     }
 
-    public function update(Request $request, TodoList $todolist)
+    public function update(TodoListRequest $request, TodoList $todo_list)
     {
-        $request->validate(['name' => ['required']]);
-        $todolist->update($request->all());
-        return $todolist;
+        $todo_list->update($request->all());
+        return $todo_list;
     }
 }
