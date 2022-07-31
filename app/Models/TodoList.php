@@ -12,6 +12,14 @@ class TodoList extends Model
 
     protected $guarded = [];
 
+    // public static function boot()
+    // {
+    //     parent::boot();
+    //     self::deleting(function($list){
+    //         $list->tasks->each->delete();
+    //     });
+    // }
+
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);

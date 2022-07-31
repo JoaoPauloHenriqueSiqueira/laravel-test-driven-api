@@ -10,6 +10,11 @@ class Task extends Model
 {
     use HasFactory;
 
+    public const NOT_STARTED = 'not_started';
+    public const PENDING = 'pending';
+    public const STARTED = 'started';
+
+
     protected $guarded = [];
 
     public function todo_list(): BelongsTo

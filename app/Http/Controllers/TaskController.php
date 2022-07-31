@@ -13,13 +13,13 @@ class TaskController extends Controller
 {
     public function index(TodoList $todo_list)
     {
-        return response(Task::where(['todo_list_id' => $todo_list->id])->get());
+        $tasks = $todo_list->tasks;
+        return response($tasks);
     }
 
     public function store(TaskRequest $request, TodoList $todo_list)
     {
-        $request['todo_list_id'] = $todo_list->id;
-        return Task::create($request->all());
+       return $todo_list->tasks()->create($request->all());
     }
 
     public function destroy(Task $task)
@@ -28,7 +28,7 @@ class TaskController extends Controller
         return response('', Response::HTTP_NO_CONTENT);
     }
 
-    public function update(TaskRequest $request, Task $task)
+    public function update(Request $request, Task $task)
     {
         $task->update($request->all());
         return response($task);
