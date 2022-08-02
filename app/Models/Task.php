@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Task extends Model
 {
@@ -20,5 +22,10 @@ class Task extends Model
     public function todo_list(): BelongsTo
     {
         return $this->belongsTo(TodoList::class);
+    }
+
+    public function labels(): BelongsTo
+    {
+        return $this->belongsTo(Label::class);
     }
 }
