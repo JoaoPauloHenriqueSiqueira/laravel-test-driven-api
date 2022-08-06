@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google-drive' => [
+        'id' => env('GOOGLE_CLIENT_ID'),
+        'secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URL'),
+    ],
 ];

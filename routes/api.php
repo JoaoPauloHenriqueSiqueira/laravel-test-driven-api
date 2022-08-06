@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LabelController;
+use App\Http\Controllers\WebServiceController;
 use App\Http\Controllers\TodoListController;
 use App\Http\Controllers\TaskController;
 
@@ -25,8 +26,13 @@ Route::middleware('auth:sanctum')->group(function () {
         ->shallow();
 
     Route::apiResource('label', LabelController::class);
+
+    Route::get('/web-service/connect/{name}', [WebServiceController::class, 'connect'])->name('web-service.connect');
+    Route::post('/web-service/callback', [WebServiceController::class, 'callback'])->name('web-service.callback');
+
 });
 
 
 Route::post('/register', RegisterController::class)->name('user.register');
 Route::post('/login', LoginController::class)->name('user.login');
+
